@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-Wp9f1n1nIRaiL/uF/VEY0Ia9ZzDqKjXQg+T/ZzTtf4tZoNl40D5iNH3vXTVOM7eLHHy1r+8x1pgz+Ez7OAO1iw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: violet;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h3 {
+            text-align: center;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .weather-icon {
+            font-size: 48px;
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <form method="GET">
+            {% csrf_token %}
+            <label for="city">Enter Your City Name:</label>
+            <input type="text" id="city" name="city" placeholder="E.g., London, New York, Paris">
+            <button type="submit">Get Weather</button>
+        </form>
+        {% if city %}
+        <h3>Weather in {{ city }}</h3>
+        <i class="weather-icon fas fa-sun"></i> <!-- Example weather icon -->
+        <h3>Today's weather: {{ main }}</h3>
+        <h3>Temperature: {{ temp }}°C</h3>
+        <h3>Feels like: {{ feels }}°C</h3>
+        {% endif %}
+    </div>
+</body>
+
+</html>
